@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Campus Problem Reporting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-brand"><i class="fa-solid fa-building-shield"></i> Campus Reporting <span class="admin-tag">ADMIN</span></div>
+        <div class="navbar-links">
+            <a href="admin-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="admin-complaints.html"><i class="fa-solid fa-list-check"></i> Complaints</a>
+            <a href="manage-staff.html"><i class="fa-solid fa-users-gear"></i> Manage Staff</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <h1>Admin Dashboard</h1>
+        <p class="subtitle">Overview of all campus complaints</p>
+
+        <!-- Summary cards -->
+        <div class="stats-grid stats-grid-6">
+            <div class="stat-card">
+                <h3 id="totalCount">0</h3>
+                <p>Total</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="pendingCount">0</h3>
+                <p>Pending</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="assignedCount">0</h3>
+                <p>Assigned</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="progressCount">0</h3>
+                <p>In Progress</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="resolvedCount">0</h3>
+                <p>Resolved</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="rejectedCount">0</h3>
+                <p>Rejected</p>
+            </div>
+        </div>
+
+        <!-- Chart section -->
+        <div class="chart-card">
+            <h3><i class="fa-solid fa-chart-column"></i> Complaints by Category</h3>
+            <canvas id="categoryChart"></canvas>
+        </div>
+
+        <!-- Pending staff approvals -->
+        <div class="section-header">
+            <h2><i class="fa-solid fa-user-clock"></i> Staff Approval Requests</h2>
+        </div>
+
+        <table class="complaints-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Requested Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="pendingStaffBody">
+                <tr>
+                    <td colspan="5" class="empty-message">Loading...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-header">
+            <h2>Recent Complaints</h2>
+            <a href="admin-complaints.html" class="btn-secondary">View All <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <table class="complaints-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="recentComplaintsBody">
+                <tr>
+                    <td colspan="7" class="empty-message">No complaints yet.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service worker registered'))
+      .catch(err => console.error('Service worker registration failed:', err));
+  }
+</script>
+</body>
+</html>

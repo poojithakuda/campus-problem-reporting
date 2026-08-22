@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard - Campus Problem Reporting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-brand"><i class="fa-solid fa-building-shield"></i> Campus Reporting <span class="staff-tag">STAFF</span></div>
+        <div class="navbar-links">
+            <a href="staff-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <h1>Welcome, <span id="staffName">Staff</span></h1>
+        <p class="subtitle">Complaints assigned to your department</p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="assignedCount">0</h3>
+                <p>Assigned to You</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="progressCount">0</h3>
+                <p>In Progress</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="resolvedCount">0</h3>
+                <p>Resolved by You</p>
+            </div>
+        </div>
+
+        <table class="complaints-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Assigned On</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="staffComplaintsBody">
+                <tr>
+                    <td colspan="6" class="empty-message">No complaints assigned yet.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Update Modal (hidden by default) -->
+    <div class="modal-overlay" id="updateModal" style="display:none;">
+        <div class="modal-box">
+            <h3><i class="fa-solid fa-pen-to-square"></i> Update Progress</h3>
+
+            <label for="staffStatus">Status</label>
+            <select id="staffStatus">
+                <option value="Assigned">Assigned</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+
+            <label for="staffRemarks">Remarks</label>
+            <textarea id="staffRemarks" rows="3" placeholder="Describe the work done..."></textarea>
+
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelUpdateBtn">Cancel</button>
+                <button class="btn-primary" id="saveUpdateBtn">Save Update</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/staff-dashboard.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service worker registered'))
+      .catch(err => console.error('Service worker registration failed:', err));
+  }
+</script>
+</body>
+</html>

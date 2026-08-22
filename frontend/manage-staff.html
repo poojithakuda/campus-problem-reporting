@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Staff - Campus Problem Reporting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1a73e8">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2c3e50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="FixCampus">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-brand"><i class="fa-solid fa-building-shield"></i> Campus Reporting <span class="admin-tag">ADMIN</span></div>
+        <div class="navbar-links">
+            <a href="admin-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="admin-complaints.html"><i class="fa-solid fa-list-check"></i> Complaints</a>
+            <a href="manage-staff.html"><i class="fa-solid fa-users-gear"></i> Manage Staff</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <h1>Manage Staff &amp; Admins</h1>
+        <p class="subtitle">Create new staff or admin accounts. Only admins can access this page.</p>
+
+        <form id="createStaffForm" class="auth-container" style="margin: 0 0 2rem 0;">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Temporary Password</label>
+            <input type="password" id="password" name="password" required minlength="6">
+
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+                <option value="staff">Staff</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit">Create Account</button>
+        </form>
+
+        <div id="formMessage"></div>
+
+        <div class="section-header">
+            <h2>Existing Staff &amp; Admins</h2>
+        </div>
+
+        <table class="complaints-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="staffListBody">
+                <tr>
+                    <td colspan="5" class="empty-message">Loading...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Edit modal -->
+    <div id="editModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h2>Edit Account</h2>
+            <form id="editStaffForm">
+                <input type="hidden" id="editUserId">
+                <label for="editFullName">Full Name</label>
+                <input type="text" id="editFullName" required>
+
+                <label for="editEmail">Email</label>
+                <input type="email" id="editEmail" required>
+
+                <label for="editPassword">New Password (leave blank to keep current)</label>
+                <input type="password" id="editPassword" minlength="6">
+
+                <label for="editRole">Role</label>
+                <select id="editRole" required>
+                    <option value="staff">Staff</option>
+                    <option value="admin">Admin</option>
+                </select>
+
+                <div style="display:flex; gap:10px; margin-top:10px;">
+                    <button type="submit">Save Changes</button>
+                    <button type="button" id="cancelEditBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+            <div id="editModalMessage"></div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/manage-staff.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service-worker.js")
+                    .then((reg) => console.log("Service worker registered:", reg.scope))
+                    .catch((err) => console.error("Service worker registration failed:", err));
+            });
+        }
+    </script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service worker registered'))
+      .catch(err => console.error('Service worker registration failed:', err));
+  }
+</script>
+</body>
+</html>

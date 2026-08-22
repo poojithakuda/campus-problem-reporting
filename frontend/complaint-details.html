@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Details - Campus Problem Reporting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="navbar-brand"><i class="fa-solid fa-building-shield"></i> Campus Reporting</div>
+    <div class="navbar-links">
+        <a href="student-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="submit-complaint.html"><i class="fa-solid fa-circle-plus"></i> Submit Complaint</a>
+        <a href="my-complaints.html"><i class="fa-solid fa-list-check"></i> My Complaints</a>
+        <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+        <a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+</nav>
+
+
+    <div class="page-container">
+        <a href="my-complaints.html" class="back-link">&larr; Back to My Complaints</a>
+
+        <div class="details-card">
+            <div class="details-header">
+                <h1 id="complaintId">Complaint ID: CMP001</h1>
+                <span id="complaintStatus" class="status-badge status-pending">Pending</span>
+            </div>
+
+            <div class="details-grid">
+                <div>
+                    <p class="label">Category</p>
+                    <p id="complaintCategory" class="value">-</p>
+                </div>
+                <div>
+                    <p class="label">Location</p>
+                    <p id="complaintLocation" class="value">-</p>
+                </div>
+                <div>
+                    <p class="label">Submitted On</p>
+                    <p id="complaintDate" class="value">-</p>
+                </div>
+                <div>
+                    <p class="label">Last Updated</p>
+                    <p id="complaintUpdated" class="value">-</p>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <p class="label">Description</p>
+                <p id="complaintDescription" class="value">-</p>
+            </div>
+
+            <div class="details-section" id="imageSection" style="display:none;">
+                <p class="label">Attached Image</p>
+                <img id="complaintImage" src="" alt="Complaint image" class="complaint-image">
+            </div>
+
+            <div class="details-section">
+                <p class="label">Status Timeline</p>
+                <ul class="timeline" id="statusTimeline">
+                    <li>No updates yet.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/complaint-details.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service worker registered'))
+      .catch(err => console.error('Service worker registration failed:', err));
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Campus Problem Reporting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+</head>
+<body>
+
+    <div class="auth-container">
+        <h1>Campus Problem Reporting</h1>
+        <h2>Create an Account</h2>
+
+        <form id="registerForm">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <label for="role">Register as</label>
+            <select id="role" name="role" required>
+                <option value="student">Student</option>
+                <option value="staff">Staff</option>
+            </select>
+
+            <div id="staffFields" style="display: none;">
+                <label for="block">Working Block</label>
+                <select id="block" name="block">
+                    <option value="Main Block">Main Block</option>
+                    <option value="Data Science Block">Data Science Block</option>
+                    <option value="Civil Block">Civil Block</option>
+                    <option value="Electrical Block">Electrical Block</option>
+                    <option value="First Year Block">First Year Block</option>
+                </select>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/register.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service worker registered'))
+      .catch(err => console.error('Service worker registration failed:', err));
+  }
+</script>
+</body>
+</html>

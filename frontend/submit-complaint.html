@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Complaint - Campus Problem Reporting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="navbar-brand"><i class="fa-solid fa-building-shield"></i> Campus Reporting</div>
+    <div class="navbar-links">
+        <a href="student-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="submit-complaint.html"><i class="fa-solid fa-circle-plus"></i> Submit Complaint</a>
+        <a href="my-complaints.html"><i class="fa-solid fa-list-check"></i> My Complaints</a>
+        <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+        <a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+</nav>
+
+    <div class="page-container">
+        <h1>Submit a Complaint</h1>
+        <p class="subtitle">Fill in the details below to report a problem</p>
+
+        <form id="complaintForm" class="form-card">
+
+            <label for="block">Block</label>
+            <select id="block" name="block" required>
+                <option value="">-- Select Block --</option>
+                <option value="Main Block">Main Block</option>
+                <option value="Data Science Block">Data Science Block</option>
+                <option value="Civil Block">Civil Block</option>
+                <option value="Electrical Block">Electrical Block</option>
+                <option value="First Year Block">First Year Block</option>
+            </select>
+
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="">-- Select Category --</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Water">Water</option>
+                <option value="Cleanliness">Cleanliness</option>
+                <option value="Infrastructure">Infrastructure</option>
+                <option value="Internet">Internet/Wi-Fi</option>
+                <option value="Classroom">Classroom</option>
+                <option value="Laboratory">Laboratory</option>
+                <option value="Transport">Transport</option>
+                <option value="Security">Security</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="location">Campus Location</label>
+            <input type="text" id="location" name="location" placeholder="e.g. Room 204" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5" placeholder="Describe the problem in detail..." required></textarea>
+
+            <label for="image">Upload Image (optional)</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <button type="submit" class="btn-primary">Submit Complaint</button>
+        </form>
+
+        <div id="formMessage"></div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/submit-complaint.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service worker registered'))
+      .catch(err => console.error('Service worker registration failed:', err));
+  }
+</script>
+</body>
+</html>

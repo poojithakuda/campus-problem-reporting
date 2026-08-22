@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Complaints - Campus Problem Reporting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-brand"><i class="fa-solid fa-building-shield"></i> Campus Reporting <span class="admin-tag">ADMIN</span></div>
+        <div class="navbar-links">
+            <a href="admin-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="admin-complaints.html"><i class="fa-solid fa-list-check"></i> Complaints</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <h1>Manage Complaints</h1>
+        <p class="subtitle">Search, filter, assign, and update complaints</p>
+
+        <!-- Search & Filter Bar -->
+        <div class="filter-bar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search by ID, student, or location...">
+            </div>
+
+            <select id="filterCategory">
+                <option value="">All Categories</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Water">Water</option>
+                <option value="Cleanliness">Cleanliness</option>
+                <option value="Infrastructure">Infrastructure</option>
+                <option value="Internet">Internet/Wi-Fi</option>
+                <option value="Classroom">Classroom</option>
+                <option value="Laboratory">Laboratory</option>
+                <option value="Transport">Transport</option>
+                <option value="Security">Security</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <select id="filterStatus">
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Assigned">Assigned</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Rejected">Rejected</option>
+            </select>
+        </div>
+
+        <table class="complaints-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="allComplaintsBody">
+                <tr>
+                    <td colspan="8" class="empty-message">No complaints found.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Assign / Update Modal (hidden by default) -->
+    <div class="modal-overlay" id="assignModal" style="display:none;">
+        <div class="modal-box">
+            <h3><i class="fa-solid fa-user-gear"></i> Update Complaint</h3>
+
+            <label for="assignDept">Assign to Department</label>
+            <select id="assignDept">
+                <option value="">-- Select Department --</option>
+            </select>
+
+            <label for="updateStatus">Status</label>
+            <select id="updateStatus">
+                <option value="Pending">Pending</option>
+                <option value="Assigned">Assigned</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Rejected">Rejected</option>
+            </select>
+
+            <label for="adminRemarks">Remarks</label>
+            <textarea id="adminRemarks" rows="3" placeholder="Add a note..."></textarea>
+
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelModalBtn">Cancel</button>
+                <button class="btn-primary" id="saveModalBtn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+        <script src="js/api.js"></script>
+        <script src="js/admin-complaints.js"></script>
+        <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service worker registered'))
+      .catch(err => console.error('Service worker registration failed:', err));
+  }
+</script>
+</body>
+</html>
