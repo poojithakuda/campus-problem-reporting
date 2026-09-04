@@ -686,3 +686,22 @@ form button:hover {
     color: #fff;
     border-color: #333;
 }
+
+/* ===== Auth Icon (login/register page) ===== */
+.auth-icon {
+    text-align: center;
+    font-size: 46px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #4568dc, #6a3ea1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body:has(.auth-container) {
+    background-image: url('../images/campus-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}

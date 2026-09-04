@@ -1,13 +1,26 @@
 import requests
 
-url = "http://127.0.0.1:8000/auth/login"
+url = "http://127.0.0.1:8000/auth/register"
 
-data = {
-    "email": "testlogin@campus.com",
-    "password": "Test@123"
-}
+admins = [
+    {
+        "full_name": "Admin 1",
+        "email": "admin1@campus.com",
+        "password": "Admin@123",
+        "role": "admin"
+    },
+    {
+        "full_name": "Admin 2",
+        "email": "admin2@campus.com",
+        "password": "Admin@123",
+        "role": "admin"
+    }
+]
 
-response = requests.post(url, json=data)
+for admin in admins:
+    response = requests.post(url, json=admin)
 
-print("Status Code:", response.status_code)
-print("Response Body:", response.text)
+    print("Email:", admin["email"])
+    print("Status:", response.status_code)
+    print("Response:", response.text)
+    print()
